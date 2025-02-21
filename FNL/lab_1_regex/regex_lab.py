@@ -98,7 +98,7 @@ class RegexExercises:
         Ce motif doit correspondre uniquement aux lignes troisième, quatrième, cinquième
         et sixième du fichier numbers.txt.
         """
-        return r"\b*\d+,\d+\s+"  # un ou plusieurs groupes de chiffres séparés par des virgules
+        return r"^\d{1,3}(,\d{3})*\s+" # un ou plusieurs groupes de chiffres séparés par des virgules
 
     @staticmethod
     def decimalNumbers():
@@ -109,7 +109,8 @@ class RegexExercises:
         neuvième, dixième et onzième lignes de numbers.txt.
         """
         # On autorise soit: chiffre(s)+point ou point+chiffre(s) ou chiffre(s)+point+chiffres
-        return r"\b(\d+\.|\.\d+|\d+\.\d+)\s+"
+        return r"^(?:\d+\.\d*|\d*\.\d+)\s+"
+
 
     @staticmethod
     def realNumbers():
@@ -120,6 +121,6 @@ class RegexExercises:
         Ce motif doit correspondre à la première, aux neuvième à onzième, et aux cinq dernières lignes
         du fichier numbers.txt (c'est-à-dire, toutes les lignes contenant des nombres sans virgules).
         """
-        return ""
+        return r"^[+-]?(?:\d+\.\d*|\d*\.\d+|\d+)(?:[eE][+-]?\d+)?\s+"
 
 
