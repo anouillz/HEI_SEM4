@@ -1,36 +1,74 @@
-import numpy as np
 import pandas as pd
+import numpy as np
 
 
-def compute_joint_entropy(joint_prob_matrix):
-    # compute joint entropy
-    # no 0 values so no error with log_2
-    p = joint_prob_matrix[joint_prob_matrix > 0]
-    return -np.sum(p * np.log2(p))
+def exo1_compute_probabilities(csv_file):
+    # Load data from the CSV file
+    df = pd.read_csv(csv_file, index_col=0)
+
+    # Compute the total number of adventurers
+    total_adventurers = df.to_numpy().sum()
+
+    # Probability of being a Bard
+    p_bard = df.loc["Barde"].sum() / total_adventurers
+
+    # Probability of being a Half-elf
+    p_half_elf = df["Demi-elfe"].sum() / total_adventurers
+
+    # Probability of being a Monk and a Half-orc
+    p_monk_half_orc = df.loc["Moine", "Demi-orque"] / total_adventurers
+
+    # Display results
+    probabilities = pd.DataFrame({
+        "Event": ["Being a Bard", "Being a Half-elf", "Being both a Monk and a Half-orc"],
+        "Probability": [p_bard, p_half_elf, p_monk_half_orc],
+        "Percentage": [p_bard * 100, p_half_elf * 100, p_monk_half_orc * 100]
+    })
+
+    print(probabilities)
 
 
-filename = "data/lab01-classe-race-tableau.csv"
+def exo2_compute_joint_entropy(csv_file):
+    # Load data from the CSV file
+    df = pd.read_csv(csv_file, index_col=0)
 
-try:
-    # first col contains class name
-    df = pd.read_csv(filename, index_col=0)
-    print("Tableau:")
-    print(df)
+    # Compute the total number of adventurers
+    total_adventurers = df.to_numpy().sum()
 
-    # Convert into probabilities
-    counts = df.values.astype(float)
-    total = counts.sum()
-    joint_prob = counts / total
+    # Compute joint probabilities P(c, r)
+    joint_probabilities = df / total_adventurers
 
-    # compute joint entropy
-    entropy_joint = compute_joint_entropy(joint_prob)
-    print(f"\nEntropie jointe H(C,R) : {entropy_joint:.4f} bits")
+    # Compute joint entropy H(C, R)
+    joint_entropy = -np.nansum(joint_probabilities * np.log2(joint_probabilities))
 
-except FileNotFoundError:
-    print(f"Fichier '{filename}' non trouvé. Utilisation d'un exemple de matrice uniforme.")
+    print(f"Joint Entropy H(C, R): {joint_entropy:.4f} bits")
 
-    num_races = 7
-    num_classes = 11
-    joint_prob_uniform = np.full((num_classes, num_races), 1 / (num_classes * num_races))
-    entropy_joint_uniform = compute_joint_entropy(joint_prob_uniform)
-    print(f"Entropie jointe pour une distribution uniforme : {entropy_joint_uniform:.4f} bits")
+
+def exo4_compute_joint_entropy(prob_matrix):
+    """
+    Compute the joint entropy of two random variables given their joint probability matrix.
+    :param prob_matrix: A 2D NumPy array or Pandas DataFrame representing the joint probability distribution.
+    :return: The joint entropy H(X, Y) in bits.
+    """
+    # Convert to NumPy array if input is a Pandas DataFrame
+    prob_matrix = np.array(prob_matrix)
+
+    # Compute joint entropy
+    joint_entropy = -np.nansum(prob_matrix * np.log2(prob_matrix, where=prob_matrix > 0))
+
+    print(f"Joint Entropy: {joint_entropy:.4f} bits")
+
+    #return joint_entropy
+
+example_matrix = np.array([
+    [0.1, 0.15, 0.05],
+    [0.2, 0.1, 0.1],
+    [0.1, 0.05, 0.15]
+])
+
+
+
+# Test the functions
+#exo1_compute_probabilities("data/lab01-classe-race-tableau.csv")
+#exo2_compute_joint_entropy("data/lab01-classe-race-tableau.csv")
+exo4_compute_joint_entropy(example_matrix)
