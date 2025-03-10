@@ -1,0 +1,17 @@
+---
+books:
+  - title: The Character of Physical Law
+    lang: en
+    published: 1980
+    category: science
+    author:
+      first_name: Richard
+      last_name: Feynman
+
+  - title: Harry Potter and the Philosopher's stone
+    lang: en
+    published: 1997
+    category: fantasy
+    author:
+      first_name: J.K.
+      last_name: Rowling
