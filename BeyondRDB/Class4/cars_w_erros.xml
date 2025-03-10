@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cars xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cars.xsd">
+    <car id="1">
+        <brand>Toyota</brand>
+        <model>Corolla</model>
+        <year>2020</year>
+        <engine type="petrol">1.8L</engine>
+        <door_number>3</door_number>
+        <price currency="CHF">20000</price>
+    </car>
+    <car id="2">
+        <brand>Ford</brand>
+        <model>Mustang</model>
+        <year>2023</year>
+        <engine type="petrol">5.0L</engine>
+        <door_number>10</door_number>
+        <weight>2000</weight>
+        <price currency="USD">55000</price>
+    </car>
+    <car id="3">
+        <brand>Honda</brand>
+        <model>Civic</model>
+        <year>2040</year>
+        <engine type="diesel">2.0L</engine>
+        <door_number>5</door_number>
+        <weight>2000</weight>
+        <price currency="USD">18000</price>
+    </car>
+    <car id="4">
+        <brand>BMW</brand>
+        <model>X5</model>
+        <year>2021</year>
+        <engine type="petrol">3.0L</engine>
+        <door_number>5</door_number>
+        <weight>2000</weight>
+        <price currency="CHF">60000</price>
+    </car>
+    <car id="5">
+        <brand>Tesla</brand>
+        <model>Model 3</model>
+        <year>2022</year>
+        <engine type="electric">2.0L</engine>
+        <door_number>5</door_number>
+        <weight>2000</weight>
+        <price currency="USD">LoliloL</price>
+    </car>
+</cars>
