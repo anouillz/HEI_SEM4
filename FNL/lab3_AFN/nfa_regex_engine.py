@@ -61,21 +61,43 @@ if __name__ == '__main__':
     a.add_transition(None, b)
     closure2 = epsilon_closure({a})
     print("Fermeture epsilon de {A} :", {s.id for s in closure2})
-    # Attendu : {0, 1} (0 = A, 1 = B)
+    # Attendu : {0, 1}
 
 
     reinit()
     print("# Exemple 3 : Chaîne A →ε→ B →ε→ C    (une chaîne de transitions epsilon)")
-    # TODO: compléter cet exemple
+    a = State()
+    b = State()
+    c = State()
+    a.add_transition(None, b)
+    b.add_transition(None, c)
+    closure3 = epsilon_closure({a})
+    print("Fermeture epsilon de {A} :", {s.id for s in closure3})
+    # Attendu : {0, 1, 2}
 
 
     reinit()
     print("# Exemple 4 : Branching via epsilon (A → {B, C} et C →ε→ D)")
-    # TODO: compléter cet exemple
+    a = State()
+    b = State()
+    c = State()
+    d = State()
+    a.add_transition(None, b)
+    a.add_transition(None, c)
+    c.add_transition(None, d)
+    closure4 = epsilon_closure({a})
+    print("Fermeture epsilon de {A} :", {s.id for s in closure4})
+    # Attendu : {0, 1, 2, 3}
 
 
     reinit()
     print("# Exemple 5 : Epsilon avec boucle (cycle)")
-    # TODO: compléter cet exemple
-
-    
+    a = State()
+    b = State()
+    c = State()
+    a.add_transition(None, b)
+    b.add_transition(None, c)
+    c.add_transition(None, a)  # Boucle ici
+    closure5 = epsilon_closure({a})
+    print("Fermeture epsilon de {A} :", {s.id for s in closure5})
+    # Attendu : {0, 1, 2}
